@@ -1,4 +1,4 @@
-/* Paleta de Colores Dulces - Refinada */
+/* Paleta de Colores Dulces */
 :root {
     --rosa-pastel: #ffe4ef;
     --rosa-fuerte: #ff6b8f;
@@ -17,14 +17,15 @@
     padding: 0;
 }
 
-/* --- FONDO ANIMADO DE PUNTITOS --- */
+/* --- FONDO CON MOVIMIENTO NOTORIO --- */
 body {
     font-family: 'Quicksand', sans-serif;
     background-color: var(--fondo);
     
+    /* Puntos con mayor opacidad (0.3) para que se noten más */
     background-image: 
-        radial-gradient(rgba(255, 107, 143, 0.15) 3px, transparent 3px),
-        radial-gradient(rgba(255, 107, 143, 0.15) 3px, transparent 3px);
+        radial-gradient(rgba(255, 107, 143, 0.3) 4px, transparent 4px),
+        radial-gradient(rgba(255, 107, 143, 0.3) 4px, transparent 4px);
     background-size: 60px 60px;
     background-position: 0 0, 30px 30px;
     
@@ -32,7 +33,8 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     
-    animation: moverPuntos 40s linear infinite;
+    /* Animación más rápida para que el movimiento sea evidente */
+    animation: moverPuntos 15s linear infinite;
 }
 
 @keyframes moverPuntos {
@@ -44,8 +46,8 @@ body {
 .banner-header {
     background: linear-gradient(-45deg, var(--rosa-pastel), #fff0f5, #ffd6e6, var(--rosa-pastel));
     background-size: 400% 400%;
-    animation: fondoDinamico 10s ease infinite; /* Requiere la animación que está abajo */
-    padding: 60px 20px;
+    animation: fondoDinamico 10s ease infinite;
+    padding: 80px 20px; /* Un poco más de aire */
     text-align: center;
     border-bottom: 3px solid rgba(255, 107, 143, 0.2);
     margin-bottom: 40px;
@@ -58,81 +60,78 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* Animación para el título */
-@keyframes flotarTitulo {
-    0% { transform: translateY(0px); text-shadow: 2px 2px 0px white, 0 5px 15px rgba(255,107,143,0.3); }
-    50% { transform: translateY(-6px); text-shadow: 2px 2px 0px white, 0 12px 20px rgba(255,107,143,0.2); }
-    100% { transform: translateY(0px); text-shadow: 2px 2px 0px white, 0 5px 15px rgba(255,107,143,0.3); }
-}
-
+/* --- TÍTULO: MÁS GRANDE Y RESPIRACIÓN FUERTE --- */
 .banner-title {
     font-family: 'Grand Hotel', cursive;
-    font-size: 4rem;
+    font-size: 5.5rem; /* Tamaño aumentado */
     margin: 0;
     color: var(--rosa-fuerte);
     display: inline-block;
-    animation: flotarTitulo 4s ease-in-out infinite;
+    /* Sombra más fuerte para resaltar */
+    text-shadow: 3px 3px 0px white, 0 8px 20px rgba(255, 107, 143, 0.4);
+    animation: flotarTitulo 3.5s ease-in-out infinite;
+}
+
+@keyframes flotarTitulo {
+    0% { 
+        transform: translateY(0px) scale(1); 
+    }
+    50% { 
+        transform: translateY(-15px) scale(1.1); /* Sube más y se agranda */
+        text-shadow: 3px 3px 0px white, 0 25px 35px rgba(255, 107, 143, 0.3);
+    }
+    100% { 
+        transform: translateY(0px) scale(1); 
+    }
 }
 
 .slogan-panel {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .banner-slogan {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--chocolate);
     font-weight: 700;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Contenedor Principal */
 main {
     padding: 0 20px;
     max-width: 650px;
-    margin: 0 auto 120px auto;
-}
-
-/* --- ANIMACIONES PARA LOS RECUADROS --- */
-@keyframes pulsarSombraItem {
-    0% { box-shadow: 0 10px 30px rgba(74, 51, 45, 0.06); }
-    50% { box-shadow: 0 12px 35px rgba(255, 107, 143, 0.2); }
-    100% { box-shadow: 0 10px 30px rgba(74, 51, 45, 0.06); }
-}
-
-@keyframes entrarItem {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+    margin: 0 auto 150px auto; /* Más espacio abajo por el botón */
 }
 
 /* Tarjetas de Producto */
 .item {
     background: var(--blanco);
-    border-radius: 20px;
+    border-radius: 25px; /* Bordes más redondeados */
     overflow: hidden;
     margin-bottom: 35px;
-    animation: pulsarSombraItem 4s infinite ease-in-out, entrarItem 0.8s ease-out both;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 1px solid rgba(255, 228, 239, 0.8);
     position: relative;
+    box-shadow: 0 10px 30px rgba(74, 51, 45, 0.06);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: entrarItem 0.8s ease-out both;
 }
 
-.item:nth-child(2) {
-    animation-delay: 0s, 0.2s; 
+@keyframes entrarItem {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .item:hover {
-    transform: translateY(-10px);
-    animation-play-state: paused;
-    box-shadow: 0 18px 45px rgba(255, 107, 143, 0.25);
+    transform: translateY(-12px);
+    box-shadow: 0 20px 50px rgba(255, 107, 143, 0.3);
 }
 
-/* ✨ AQUÍ ESTÁ EL CAMBIO DE LAS IMÁGENES MÁS GRANDES ✨ */
 .img-container {
     width: 100%;
-    height: 350px; /* Aumentamos de 280px a 350px */
+    height: 350px; 
     overflow: hidden;
 }
 
@@ -140,21 +139,21 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.8s ease;
     background-color: #fce4ec; 
 }
 
 .item:hover img {
-    transform: scale(1.08); 
+    transform: scale(1.1); 
 }
 
 .info {
-    padding: 25px;
+    padding: 30px;
 }
 
 .info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+    font-size: 1.9rem;
+    margin-bottom: 10px;
     color: var(--rosa-fuerte);
     font-weight: 800;
 }
@@ -162,26 +161,21 @@ main {
 .info p {
     font-size: 1.05rem;
     color: var(--texto-suave);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .precio-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 18px;
+    padding-top: 20px;
     border-top: 2px dashed var(--rosa-pastel);
 }
 
 .precio {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 800;
     color: #27ae60;
-}
-
-.rating {
-    font-size: 1.1rem;
-    letter-spacing: 2px;
 }
 
 .tag-fav {
@@ -191,7 +185,6 @@ main {
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 700;
-    box-shadow: 0 4px 10px rgba(133, 100, 4, 0.1);
 }
 
 /* Sección de Confianza */
@@ -200,103 +193,76 @@ main {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin: 40px 0;
-    animation: entrarItem 1s ease-out 0.4s both;
 }
 
 .badge {
     background: var(--blanco);
-    padding: 15px;
-    border-radius: 15px;
+    padding: 20px;
+    border-radius: 20px;
     text-align: center;
     box-shadow: 0 6px 15px rgba(0,0,0,0.04);
     border: 1px solid var(--rosa-pastel);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     transition: transform 0.3s ease;
 }
 
-.badge:hover {
-    transform: translateY(-3px);
-}
-
-.badge span {
-    font-size: 2.2rem;
-    margin-bottom: 5px;
-}
-
-.badge p {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--chocolate);
-}
+.badge span { font-size: 2.5rem; margin-bottom: 8px; }
+.badge p { font-weight: 700; color: var(--chocolate); }
 
 /* Sobre Nosotros */
 .about-us {
     text-align: center;
     background: var(--blanco);
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(255, 107, 143, 0.08);
-    border-top: 4px solid var(--rosa-fuerte);
-    animation: entrarItem 1s ease-out 0.6s both;
+    padding: 40px 30px;
+    border-radius: 25px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(255, 107, 143, 0.1);
+    border-top: 5px solid var(--rosa-fuerte);
 }
 
-.about-us h3 {
-    color: var(--rosa-fuerte);
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
-.about-us p {
-    font-size: 1rem;
-    color: var(--texto-suave);
-    line-height: 1.8;
-}
-
-/* Animación Botón de WhatsApp */
-@keyframes respirar {
-    0% { transform: scale(1); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3), 0 0 0 0 rgba(37, 211, 102, 0.4); }
-    50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { transform: scale(1); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3), 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
+/* --- BOTÓN WHATSAPP: RESPIRACIÓN EXAGERADA --- */
 .btn-whatsapp {
     position: fixed;
-    bottom: 25px;
+    bottom: 30px;
     left: 10%;
     right: 10%;
     background: linear-gradient(135deg, var(--verde-wa-1), var(--verde-wa-2));
     color: white;
     text-align: center;
-    padding: 18px;
+    padding: 20px;
     border-radius: 50px;
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: 800;
+    font-size: 1.2rem;
     z-index: 999;
-    animation: respirar 2.5s infinite ease-in-out; 
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    animation: respirarFuerte 2.5s infinite ease-in-out;
+}
+
+@keyframes respirarFuerte {
+    0% { transform: scale(1); }
+    50% { 
+        transform: scale(1.1); /* Crecimiento más marcado */
+        box-shadow: 0 15px 35px rgba(37, 211, 102, 0.6), 0 0 0 15px rgba(37, 211, 102, 0); 
+    }
+    100% { transform: scale(1); }
 }
 
 /* Footer */
 footer {
     text-align: center;
-    margin-top: 20px;
-    font-size: 0.85rem;
+    padding-bottom: 40px;
+    font-size: 0.9rem;
     color: var(--texto-suave);
-    padding: 20px;
 }
 
 /* Ajustes para móviles */
-@media (max-width: 400px) {
-    .banner-title { font-size: 3rem; }
-    
-    /* También las hacemos un poquito más grandes en celular */
-    .img-container { height: 280px; } 
-    
+@media (max-width: 480px) {
+    .banner-title { font-size: 3.5rem; } /* Se ajusta para que no desborde */
+    .img-container { height: 300px; }
     .trust-section { grid-template-columns: 1fr; }
-    .btn-whatsapp { font-size: 1rem; padding: 15px; }
+    .btn-whatsapp { font-size: 1.1rem; left: 5%; right: 5%; }
 }
